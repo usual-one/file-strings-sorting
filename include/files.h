@@ -1,7 +1,10 @@
 #include "stdio.h"
 
 
-char* ReadLine(FILE fd, int line_size);
+int ReadLine(FILE fd, 
+             char* line,
+             int line_size);
 
-char* WriteLine(FILE fd, char* line);
+int WriteLine(FILE fd, 
+              const char* line);
 
