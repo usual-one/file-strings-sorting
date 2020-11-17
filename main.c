@@ -1,6 +1,6 @@
-#include "stdio.h"
-#include "stdlib.h"
-#include "string.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include "include/files.h"
 #include "include/conversion.h"
@@ -9,7 +9,8 @@
 int main(int argc, char* argv[]) {
     const int max_line_size = 10 * 100 + 9 + 1;
 
-    if (!argc) {
+    if (argc == 1) {
+        puts("No path provided");
         return -1;
     }
     char* read_path = argv[1];
