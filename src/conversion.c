@@ -64,8 +64,8 @@ int ConvertLine(const char *line,
     }
 
     int digits_sum = Sum(digits, digits_size);
-    char **sorted_words = Sort((const char **) words, words_size);
-    converted_line = CreateConvertedLine((const char **) sorted_words, words_size, digits_sum);
+    Sort(words, words_size);
+    converted_line = CreateConvertedLine((const char **) words, words_size, digits_sum);
 
     return 0;
 }
