@@ -1,3 +1,6 @@
+#ifndef FILES_H
+#define FILES_H
+
 #include "stdio.h"
 
 
@@ -15,3 +18,4 @@ int ReadLine(FILE *fd,
 int WriteLine(FILE *fd, 
               const char* line);
 
+#endif // FILES_H
