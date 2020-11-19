@@ -18,6 +18,7 @@ int ReadLine(FILE *fd,
              int line_size);
 
 int WriteLine(FILE *fd, 
-              const string line);
+              const string line,
+              char append_newline);
 
 #endif // FILES_H

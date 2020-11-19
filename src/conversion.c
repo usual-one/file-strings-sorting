@@ -11,7 +11,7 @@
 int ConvertFile(const string dest_path,
                 const string src_path,
                 int line_size) {
-    puts("ConvertFile:0: function started"); //DEBUG
+    //puts("ConvertFile:0: function started"); //DEBUG
     FILE *read_fd = fopen(src_path, "r");
     if (read_fd == NULL) {
         return -1;
@@ -21,7 +21,7 @@ int ConvertFile(const string dest_path,
         fclose(read_fd);
         return -1;
     }
-    puts("ConvertFile:1: files opened"); // DEBUG
+    //puts("ConvertFile:1: files opened"); // DEBUG
 
     string read_line = NULL;
     string converted_line = NULL;
@@ -31,22 +31,22 @@ int ConvertFile(const string dest_path,
             fclose(write_fd);
             return -1;
         }
-        printf("ConvertFile:2:loop: read_line: %s\n", read_line); // DEBUG
+    //    printf("ConvertFile:2:loop: read_line: %s\n", read_line); // DEBUG
         if (ConvertLine(read_line, &converted_line) == -1) {
             free(read_line);
             fclose(read_fd);
             fclose(write_fd);
             return -1;
         }
-        printf("ConvertFile:3:loop: converted_line: %s\n", converted_line); // DEBUG
-        if (WriteLine(write_fd, converted_line) == -1) {
+    //     printf("ConvertFile:3:loop: converted_line: %s\n", converted_line); // DEBUG
+        if (WriteLine(write_fd, converted_line, !feof(read_fd)) == -1) {
             free(read_line);
             free(converted_line);
             fclose(read_fd);
             fclose(write_fd);
             return -1;
         }
-        puts("ConvertFile:4:loop: line written"); // DEBUG
+    //    puts("ConvertFile:4:loop: line written"); // DEBUG
  
         free(read_line);
         free(converted_line);
@@ -54,7 +54,7 @@ int ConvertFile(const string dest_path,
     
     fclose(read_fd);
     fclose(write_fd);
-    puts("ConvertFile:5: function finished"); // DEBUG
+    //puts("ConvertFile:5: function finished"); // DEBUG
     return 0;
 }
 

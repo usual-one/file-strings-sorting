@@ -24,7 +24,7 @@ int CopyContent(const string dest_path,
             fclose(write_fd);
             return -1;    
         }
-        if (WriteLine(write_fd, line) == -1) {
+        if (WriteLine(write_fd, line, !feof(read_fd)) == -1) {
             free(line);
             fclose(read_fd);
             fclose(write_fd);
@@ -46,7 +46,7 @@ int ReadLine(FILE *fd,
         return -1; // incorrect file descriptor
     }
 
-    (*line) = (string) malloc(line_size * sizeof(char));
+    *line = (string) malloc(line_size * sizeof(char));
     for (size_t i = 0; i < line_size; i++) {
         (*line)[i] = fgetc(fd);
         if ((*line)[i] == EOF || (*line)[i] == '\n') {
@@ -63,13 +63,16 @@ int ReadLine(FILE *fd,
 }
 
 int WriteLine(FILE *fd,
-              const string line) {
+              const string line,
+              char append_newline) {
     if (feof(fd) || !fd) {
         return -1;
     }
 
     fwrite(line, sizeof(char), strlen(line), fd);  
-    fputc('\n', fd);
+    if (append_newline) {
+        fputc('\n', fd);
+    }
     return 0;
 }
 
