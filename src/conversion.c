@@ -8,9 +8,10 @@
 #include "../include/utils.h"
 
 
-int ConvertFile(const char *dest_path,
-                const char *src_path,
+int ConvertFile(const string dest_path,
+                const string src_path,
                 int line_size) {
+    puts("ConvertFile:0: function started"); //DEBUG
     FILE *read_fd = fopen(src_path, "r");
     if (read_fd == NULL) {
         return -1;
@@ -20,21 +21,24 @@ int ConvertFile(const char *dest_path,
         fclose(read_fd);
         return -1;
     }
+    puts("ConvertFile:1: files opened"); // DEBUG
 
-    char* read_line;
-    char* converted_line;
+    string read_line = NULL;
+    string converted_line = NULL;
     while (!feof(read_fd)) {
-        if (ReadLine(read_fd, read_line, line_size) == -1) {
+        if (ReadLine(read_fd, &read_line, line_size) == -1) {
             fclose(read_fd);
             fclose(write_fd);
             return -1;
         }
-        if (ConvertLine(read_line, converted_line) == -1) {
+        printf("ConvertFile:2:loop: read_line: %s\n", read_line); // DEBUG
+        if (ConvertLine(read_line, &converted_line) == -1) {
             free(read_line);
             fclose(read_fd);
             fclose(write_fd);
             return -1;
         }
+        printf("ConvertFile:3:loop: converted_line: %s\n", converted_line); // DEBUG
         if (WriteLine(write_fd, converted_line) == -1) {
             free(read_line);
             free(converted_line);
@@ -42,37 +46,58 @@ int ConvertFile(const char *dest_path,
             fclose(write_fd);
             return -1;
         }
-
+        puts("ConvertFile:4:loop: line written"); // DEBUG
+ 
         free(read_line);
         free(converted_line);
     }
-
+    
     fclose(read_fd);
     fclose(write_fd);
+    puts("ConvertFile:5: function finished"); // DEBUG
     return 0;
 }
 
-int ConvertLine(const char *line,
-                char *converted_line) {
-    char** words;
+int ConvertLine(const string line,
+                string *converted_line) {
+    //puts("ConvertLine:0: function started"); // DEBUG
+    string *words;
     size_t words_size;
     char* digits;
     size_t digits_size;
+    //printf("ConvertLine:1: line: %s\n", line); // DEBUG
 
-    if (SplitLineByType(line, words, &words_size, digits, &digits_size) == -1) {
+    if (SplitByType(line, &words, &words_size, &digits, &digits_size) == -1) {
         return -1;
+    }
+    for (size_t i = 0; i < words_size; i++) {
+    //    printf("ConvertLine:2:loop word: %s\n", words[i]); // DEBUG
+    }
+    for (size_t i = 0; i < digits_size; i++) {
+    //    printf("ConvertLine:3:loop digit: %d\n", digits[i]); // DEBUG
     }
 
     int digits_sum = Sum(digits, digits_size);
-    Sort(words, words_size);
-    converted_line = CreateConvertedLine((const char **) words, words_size, digits_sum);
+    //printf("ConvertLine:4: digits_sum: %d\n", digits_sum); // DEBUG
+    Sort(&words, words_size);
+    for (size_t i = 0; i < words_size; i++) {
+    //    printf("ConvertLine:5:loop sorted word: %s\n", words[i]); // DEBUG
+    }
+    *converted_line = CreateConvertedLine((const string *) words, words_size, digits_sum);
+    //printf("ConvertLine:6: converted_line: %s\n", *converted_line); // DEBUG
 
+    for (size_t i = 0; i < words_size; i++) {
+        free(words[i]);
+    }
+    free(words);
+
+    //puts("ConvertLine:7: function finished"); // DEBUG
     return 0;
 }
 
-char *CreateConvertedLine(const char **words,
-                          size_t words_size,
-                          int digits_sum) {
+string CreateConvertedLine(const string *words,
+                           size_t words_size,
+                           int digits_sum) {
 
     size_t line_size = 0;  
     for (size_t i = 0; i < words_size; i++) {
@@ -80,14 +105,14 @@ char *CreateConvertedLine(const char **words,
         line_size++; // ' '
     }
 
-    char *sum_string;
+    string sum_string;
     if (digits_sum) {
         sum_string = ToString(digits_sum);
         line_size += strlen(sum_string);
     }
     line_size++; // '\0'
 
-    char *converted_line = malloc(line_size * sizeof(char));
+    string converted_line = (string) malloc(line_size * sizeof(char));
     converted_line[0] = '\0';
     for (size_t i = 0; i < words_size; i++) {
         strcat(converted_line, words[i]);
@@ -101,7 +126,7 @@ char *CreateConvertedLine(const char **words,
     return converted_line;
 }
 
-char *ToString(int number) {
+string ToString(int number) {
     int temp_copy = number;
     int number_char_size = 0;
 
@@ -113,7 +138,7 @@ char *ToString(int number) {
         temp_copy /= 10;
         number_char_size++;
     }
-    char *string = malloc((number_char_size + 1) * sizeof(char));
-    sprintf(string, "%d", number);
-    return string;
+    string string_number = malloc((number_char_size + 1) * sizeof(char));
+    sprintf(string_number, "%d", number);
+    return string_number;
 }

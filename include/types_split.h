@@ -3,38 +3,42 @@
 
 #include <stddef.h>
 
+#include "types.h"
+
 
 // `digits` will be allocated and must be freed
-void ConvertToDigits(const char **numbers,
+void ConvertToDigits(string *numbers,
                      size_t numbers_size,
-                     char *digits,
+                     char **digits,
                      size_t *digits_size);
 
 // `words` and `numbers` will be allocated and must be freed
-void PickTypes(const char **lines, 
+// `words` and `numbers` elements will be allocated and must be freed
+void PickTypes(string *lines, 
                size_t lines_size, 
-               char **words,
+               string **words,
                size_t *words_size,
-               char **numbers,
+               string **numbers,
                size_t *numbers_size);
 
-// changes `line` content (spaces -> '\0')
 // `split_lines` will be allocated and must be freed
-// `split_lines` will contain ptrs to `line` parts
-void SplitLine(char *line, 
-               char **split_lines, 
-               size_t *split_lines_size);
+// `split_lines` elements will be allocated and must be freed
+void Split(const string line, 
+           char delimeter,
+           string **arr, 
+           size_t *arr_size);
 
 // `words` and `digits` will be allocated and must be freed
-int SplitLineByType(const char *line,
-                    char **words,
-                    size_t *words_size,
-                    char *digits,
-                    size_t *digits_size);
+// `words` elements will be allocated and must be freed
+int SplitByType(const string line,
+                string **words,
+                size_t *words_size,
+                char **digits,
+                size_t *digits_size);
 
-char ValidateTypes(const char **words,
+char ValidateTypes(string *words,
                    size_t words_size,
-                   const char **numbers,
+                   string *numbers,
                    size_t numbers_size);
 
 #endif // TYPES_SPLIT_H

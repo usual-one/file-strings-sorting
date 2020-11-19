@@ -4,7 +4,7 @@
 #include "../include/utils.h"
 
 
-int Sum(const char* digits,
+int Sum(const char *digits,
         size_t digits_size) {
     int sum = 0;
     for (size_t i = 0; i < digits_size; i++) {
@@ -13,20 +13,20 @@ int Sum(const char* digits,
     return sum;
 }
 
-void Sort(char** words,
-          size_t words_size) {
-   for (size_t i = 0; i < words_size; i++) {
-       for (size_t j = 0; j < words_size - 1 - i; j++) {
-           if (strcasecmp(words[j], words[j + 1]) > 0) {
-               Swap(words[j], words[j + 1]);
+void Sort(string **arr,
+          size_t arr_size) {
+   for (size_t i = 0; i < arr_size; i++) {
+       for (size_t j = 0; j < arr_size - 1 - i; j++) {
+           if (strcasecmp((*arr)[j], (*arr)[j + 1]) > 0) {
+               Swap((*arr) + j, (*arr) + j + 1);
            }
        }
    } 
 }
 
-void Swap(char *a,
-          char *b) {
-    char temp = *a;
+void Swap(string *a,
+          string *b) {
+    char *temp = *a;
     (*a) = *b;
     (*b) = temp;
 }

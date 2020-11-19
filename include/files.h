@@ -1,21 +1,23 @@
 #ifndef FILES_H
 #define FILES_H
 
-#include "stdio.h"
+#include <stdio.h>
+
+#include "types.h"
 
 
 // `line_size` includes null-terminating char
-int CopyContent(const char* dest_path,
-                const char* src_path,
+int CopyContent(const string dest_path,
+                const string src_path,
                 int line_size); 
 
 // `line_size` includes null-terminating char
 // `line` will be allocated and must be freed
 int ReadLine(FILE *fd, 
-             char* line,
+             string *line,
              int line_size);
 
 int WriteLine(FILE *fd, 
-              const char* line);
+              const string line);
 
 #endif // FILES_H

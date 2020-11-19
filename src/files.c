@@ -4,8 +4,8 @@
 #include "../include/files.h"
 
 
-int CopyContent(const char* dest_path,
-                const char* src_path,
+int CopyContent(const string dest_path,
+                const string src_path,
                 int line_size) {
     FILE *read_fd = fopen(src_path, "r");
     if (read_fd == NULL) {
@@ -17,9 +17,9 @@ int CopyContent(const char* dest_path,
         return -1;
     }
 
-    char *line;
+    char *line = NULL;
     while (!feof(read_fd)) {
-        if (ReadLine(read_fd, line, line_size) == -1) {
+        if (ReadLine(read_fd, &line, line_size) == -1) {
             fclose(read_fd);
             fclose(write_fd);
             return -1;    
@@ -39,32 +39,31 @@ int CopyContent(const char* dest_path,
 }
 
 int ReadLine(FILE *fd,
-             char* line,
+             string *line,
              int line_size) {
+    //puts("ReadLine:0: function started"); // DEBUG
     if (feof(fd) || !fd) {
-        return -1;
+        return -1; // incorrect file descriptor
     }
 
-    line = malloc(line_size * sizeof(char));
+    (*line) = (string) malloc(line_size * sizeof(char));
     for (size_t i = 0; i < line_size; i++) {
-        char read_char = fgetc(fd);
-        if (read_char == EOF || read_char == '\n') {
-            line[i] = '\0';
-            break;
+        (*line)[i] = fgetc(fd);
+        if ((*line)[i] == EOF || (*line)[i] == '\n') {
+            (*line)[i] = '\0';
+    //        printf("ReadLine:1: line: %s\n", (*line)); // DEBUG
+    //        puts("ReadLine:2: function finished"); // DEBUG
+            return 0; 
         }
-        line[i] = read_char;
     }
 
-    if (line[line_size - 1] != '\0') {
-        return -1;
-        free(line);
-    }
-
-    return 0;
+    free(line);
+    //puts("ReadLine:2: function finished"); // DEBUG
+    return -1; // line exceeded `line_size`
 }
 
 int WriteLine(FILE *fd,
-              const char* line) {
+              const string line) {
     if (feof(fd) || !fd) {
         return -1;
     }
