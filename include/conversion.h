@@ -17,8 +17,8 @@ int ConvertLine(const string line,
 
 // returned value will be allocated and must be freed
 string CreateConvertedLine(const string *words,
-                          size_t words_size,
-                          int digits_sum);
+                           size_t words_size,
+                           int digits_sum);
 
 // returned value will be allocated and must be freed
 string ToString(int number);

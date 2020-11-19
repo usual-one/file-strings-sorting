@@ -1,5 +1,5 @@
-#include "stdlib.h"
-#include "string.h"
+#include <stdlib.h>
+#include <string.h>
 
 #include "../include/files.h"
 
@@ -17,7 +17,7 @@ int CopyContent(const string dest_path,
         return -1;
     }
 
-    char *line = NULL;
+    string line = NULL;
     while (!feof(read_fd)) {
         if (ReadLine(read_fd, &line, line_size) == -1) {
             fclose(read_fd);
@@ -57,7 +57,7 @@ int ReadLine(FILE *fd,
         }
     }
 
-    free(line);
+    free(*line);
     //puts("ReadLine:2: function finished"); // DEBUG
     return -1; // line exceeded `line_size`
 }
@@ -66,7 +66,7 @@ int WriteLine(FILE *fd,
               const string line,
               char append_newline) {
     if (feof(fd) || !fd) {
-        return -1;
+        return -1; // incorrect file descriptor
     }
 
     fwrite(line, sizeof(char), strlen(line), fd);  

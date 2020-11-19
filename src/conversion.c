@@ -38,7 +38,7 @@ int ConvertFile(const string dest_path,
             fclose(write_fd);
             return -1;
         }
-    //     printf("ConvertFile:3:loop: converted_line: %s\n", converted_line); // DEBUG
+    //    printf("ConvertFile:3:loop: converted_line: %s\n", converted_line); // DEBUG
         if (WriteLine(write_fd, converted_line, !feof(read_fd)) == -1) {
             free(read_line);
             free(converted_line);
@@ -138,7 +138,7 @@ string ToString(int number) {
         temp_copy /= 10;
         number_char_size++;
     }
-    string string_number = malloc((number_char_size + 1) * sizeof(char));
+    string string_number = (string) malloc((number_char_size + 1) * sizeof(char));
     sprintf(string_number, "%d", number);
     return string_number;
 }

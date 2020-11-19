@@ -162,9 +162,9 @@ int SplitByType(const string line,
         }
         free(numbers);
         for (size_t i = 0; i < (*words_size); i++) {
-            free(words[i]);
+            free((*words)[i]);
         }
-        free(words);
+        free(*words);
         return -1;
     }
     //puts("SplitLineByType:5: lines validated"); // DEBUG
