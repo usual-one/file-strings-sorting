@@ -189,7 +189,9 @@ char ValidateTypes(string *words,
     for (size_t i = 0; i < words_size; i++) {
     //    printf("ValidateTypes:1:loop word: %s\n", words[i]); // DEBUG
         for (size_t j = 0; j < strlen(words[i]); j++) {
-            if (!isalpha(words[i][j]) && words[i][j] != '-') {
+            if (!isalpha(words[i][j]) 
+                && !isdigit(words[i][j]) 
+                && words[i][j] != '-') {
     //            printf("ValidateTypes:2: invalid char: %c\n", words[i][j]); // DEBUG
                 return 0;
             }
