@@ -28,6 +28,7 @@ int main(int argc, char* argv[]) {
     // ----- converting file content -----
     if (ConvertFile(write_path, read_path, max_line_size) == -1) {
         puts("Incorrect file");
+        remove(write_path);
         free(write_path);
         return -1;
     }
@@ -37,6 +38,7 @@ int main(int argc, char* argv[]) {
     // ----- moving result content from swap to original file -----  
     if (CopyContent(read_path, write_path, max_line_size) == -1) {
         free(write_path);
+        remove(write_path);
         puts("Incorrect file");
         return -1;
     }
