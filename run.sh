@@ -1,0 +1,1 @@
+./build/FileStringsSorting $1
