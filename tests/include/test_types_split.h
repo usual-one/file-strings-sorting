@@ -8,33 +8,33 @@
 
 int TestTypesSplit();
 
-int TestConvertToDigits(string *numbers,
+int TestConvertToDigits(const string *numbers,
                         size_t numbers_size,
-                        char *assumed_digits,
+                        const char *assumed_digits,
                         size_t assumed_digits_size);
 
-int TestPickTypes(string *lines,
+int TestPickTypes(const string *lines,
                   size_t lines_size,
-                  string *assumed_words,
+                  const string *assumed_words,
                   size_t assumed_words_size,
-                  string *assumed_numbers,
+                  const string *assumed_numbers,
                   size_t assumed_numbers_size);
 
 int TestSplit(const string line,
               char delimeter,
-              string *assumed_arr,
+              const string *assumed_arr,
               size_t assumed_arr_size);
 
 int TestSplitByType(const string line,
-                    string *assumed_words,
+                    const string *assumed_words,
                     size_t assumed_words_size,
-                    char *assumed_digits,
+                    const char *assumed_digits,
                     size_t assumed_digits_size);
 
-int TestValidateTypes(string *words,
+int TestValidateTypes(const string *words,
                       size_t wors_size,
-                      string *numbers,
+                      const string *numbers,
                       size_t numbers_size,
-                      char assumed_result);
+                      char assumed_output);
 
 #endif // TEST_TYPES_SPLIT_H

@@ -21,8 +21,8 @@ void PickTypes(string *lines,
                string **numbers,
                size_t *numbers_size);
 
-// `split_lines` will be allocated and must be freed
-// `split_lines` elements will be allocated and must be freed
+// `arr` will be allocated and must be freed
+// `arr` elements will be allocated and must be freed
 void Split(const string line, 
            char delimeter,
            string **arr, 
