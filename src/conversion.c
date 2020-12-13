@@ -62,15 +62,9 @@ int ConvertLine(const string line,
     if (SplitByType(line, &words, &words_size, &digits, &digits_size) == -1) {
         return -1;
     }
-    for (size_t i = 0; i < words_size; i++) {
-    }
-    for (size_t i = 0; i < digits_size; i++) {
-    }
 
     int digits_sum = Sum(digits, digits_size);
     Sort(&words, words_size);
-    for (size_t i = 0; i < words_size; i++) {
-    }
     *converted_line = CreateConvertedLine((const string *) words, words_size, digits_sum);
 
     for (size_t i = 0; i < words_size; i++) {
