@@ -1,8 +1,8 @@
 #ifndef TEST_GLOBAL_H
 #define TEST_GLOBAL_H
 
-int TESTS_RUN = 0;
-int TESTS_SUCCEEDED = 0;
-int TESTS_FAILED = 0;
+extern int TESTS_RUN;
+extern int TESTS_SUCCEEDED;
+extern int TESTS_FAILED;
 
 #endif // TEST_GLOBAL_H
