@@ -8,8 +8,6 @@
 
 
 int main(int argc, char* argv[]) {
-    puts("main:0: program started"); //DEBUG
-
     const int max_line_size = 1000 + 1 + 1; // '\n' + '\0'
 
     if (argc == 1) {
@@ -22,9 +20,6 @@ int main(int argc, char* argv[]) {
     strcpy(write_path, read_path);
     strcat(write_path, ".swp");
 
-    printf("main:1: read_path: %s\n", read_path); // DEBUG
-    printf("main:2: write_path: %s\n", write_path); //DEBUG
-
     // ----- converting file content -----
     if (ConvertFile(write_path, read_path, max_line_size) == -1) {
         puts("Incorrect file");
@@ -33,7 +28,6 @@ int main(int argc, char* argv[]) {
         return -1;
     }
     // -----
-    puts("main:3: file converted"); //DEBUG
 
     // ----- moving result content from swap to original file -----  
     if (CopyContent(read_path, write_path, max_line_size) == -1) {
@@ -42,7 +36,6 @@ int main(int argc, char* argv[]) {
         puts("Incorrect file");
         return -1;
     }
-    puts("main:4: content copied to original file"); //DEBUG
 
     if (remove(write_path)) {
         free(write_path);
@@ -50,9 +43,7 @@ int main(int argc, char* argv[]) {
         return -1;
     }
     // -----
-    puts("main:5: swap file removed"); // DEBUG
 
     free(write_path);
-    puts("main:6: program finished"); // DEBUG
     return 0;
 }

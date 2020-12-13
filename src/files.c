@@ -41,7 +41,6 @@ int CopyContent(const string dest_path,
 int ReadLine(FILE *fd,
              string *line,
              int line_size) {
-    //puts("ReadLine:0: function started"); // DEBUG
     if (feof(fd) || !fd) {
         return -1; // incorrect file descriptor
     }
@@ -51,14 +50,11 @@ int ReadLine(FILE *fd,
         (*line)[i] = fgetc(fd);
         if ((*line)[i] == EOF || (*line)[i] == '\n') {
             (*line)[i] = '\0';
-    //        printf("ReadLine:1: line: %s\n", (*line)); // DEBUG
-    //        puts("ReadLine:2: function finished"); // DEBUG
             return 0; 
         }
     }
 
     free(*line);
-    //puts("ReadLine:2: function finished"); // DEBUG
     return -1; // line exceeded `line_size`
 }
 
