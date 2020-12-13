@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../../include/tests/test_utils.h"
-#include "../../include/tests/test_global.h"
+#include "../include/test_utils.h"
+#include "../include/test_global.h"
 #include "../../include/utils.h"
 
 
@@ -56,8 +56,8 @@ int TestUtils() {
     string assumed_sort_output2[] = {"a"};
     string assumed_sort_output3[] = {"a", "b", "c", "d"};
     string assumed_sort_output4[] = {"a", "B", "c", "D"};
-    string assumed_sort_output5[] = {"c", "a", "d", "b"};
-    string assumed_sort_output6[] = {"c", "a", "D", "B"};
+    string assumed_sort_output5[] = {"a", "b", "c", "d"};
+    string assumed_sort_output6[] = {"a", "B", "c", "D"};
 
     if (!TestSort(arr1, arr1_size, assumed_sort_output1)) {
         result = 0;
