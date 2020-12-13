@@ -1,0 +1,8 @@
+#ifndef TEST_GLOBAL_H
+#define TEST_GLOBAL_H
+
+int TESTS_RUN = 0;
+int TESTS_SUCCEEDED = 0;
+int TESTS_FAILED = 0;
+
+#endif // TEST_GLOBAL_H
