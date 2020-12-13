@@ -17,6 +17,6 @@ int TestCreateConvertedLine(const string *words,
                             const string assumed_output);
 
 int TestToString(int number,
-                 const string assumed_output)
+                 const string assumed_output);
 
 #endif // TEST_CONVERSION_H
