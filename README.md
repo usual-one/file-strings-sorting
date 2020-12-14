@@ -48,4 +48,4 @@ $ ./run-tests.sh
 ## Спецификация
 
 Спецификацию, допущения и псевдокод (первую часть ДЗ) можно найти 
-[здесь](https://docs.google.com/document/d/1cJst3UozToNJ838CUsn6B6ivlfLkuEFXmQhlgxiyjGQ/edit?usp=sharing)).
+[здесь](https://docs.google.com/document/d/1cJst3UozToNJ838CUsn6B6ivlfLkuEFXmQhlgxiyjGQ/edit?usp=sharing).
