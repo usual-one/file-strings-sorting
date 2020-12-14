@@ -2,4 +2,4 @@
 cmake -S . -B build
 make -C build
 
-./run.sh
+./run-unit-tests.sh
