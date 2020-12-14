@@ -1,0 +1,5 @@
+bash GNU Bourne-Again SHell
+Bash is Copyright 1989 -2018 by the Free Software Foundation Inc
+Bash is an sh-compatible command language interpreter
+that executes commands read from the standart input or from a file
+Bash also incorporates useful features from the Korn and C shells

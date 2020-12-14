@@ -1,0 +1,5 @@
+bash Bourne-Again GNU SHell
+Bash by Copyright Foundation Free Inc is Software the 38
+an Bash command interpreter is language sh-compatible
+a commands executes file from from input or read standart that the
+also and Bash C features from incorporates Korn shells the useful

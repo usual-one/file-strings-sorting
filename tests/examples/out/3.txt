@@ -1,0 +1,4 @@
+a-b-c b-c-a 3
+e q r t w y 4
+
+e1 4
