@@ -96,9 +96,14 @@ string CreateConvertedLine(const string *words,
     converted_line[0] = '\0';
     for (size_t i = 0; i < words_size; i++) {
         strcat(converted_line, words[i]);
-        strcat(converted_line, " ");
+        if (i != words_size - 1) {
+            strcat(converted_line, " ");
+        }
     }
     if (digits_sum) {
+        if (strlen(converted_line)) {
+            strcat(converted_line, " ");
+        }
         strcat(converted_line, sum_string);
         free(sum_string); 
     }
