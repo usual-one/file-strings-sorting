@@ -28,7 +28,7 @@ do
         echo "FAIL: $in_file"
     fi
 
-    #rm -rf $swap_file
+    rm -rf $swap_file
 done
 
 echo "$tests_run tests run: $tests_succeeded succeeded, $tests_failed failed"
