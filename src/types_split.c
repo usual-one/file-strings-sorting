@@ -1,5 +1,6 @@
-#include <stdio.h>
+#include <assert.h>
 #include <ctype.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -10,6 +11,11 @@ void ConvertToDigits(string *numbers,
                      size_t numbers_size,
                      char **digits,
                      size_t *digits_size) {
+    assert(numbers != NULL);
+    for (size_t i = 0; i < numbers_size; i++) {
+        assert(numbers[i]);
+    }
+
     // ----- Counting digits array size -----
     *digits_size = 0;
     for (size_t i = 0; i < numbers_size; i++) {
@@ -41,6 +47,11 @@ void PickTypes(string *lines,
                size_t *words_size,
                string **numbers,
                size_t *numbers_size) {
+    assert(lines != NULL);
+    for (size_t i = 0; i < lines_size; i++) {
+        assert(lines[i] != NULL);
+    }
+
     *words = (string *) malloc(lines_size * sizeof(string));
     *numbers = (string *) malloc(lines_size * sizeof(string));
     *words_size = 0;
@@ -73,6 +84,7 @@ void Split(const string line,
            char delimeter,
            string **arr,
            size_t *arr_size) {
+    assert(line != NULL);
 
     // ----- Counting size of split_lines array -----
     *arr_size = 0;
@@ -113,6 +125,7 @@ int SplitByType(const string line,
                 size_t *words_size,
                 char **digits,
                 size_t *digits_size) {
+    assert(line != NULL);
 
     string *split_lines = NULL;
     size_t split_lines_size;
@@ -150,6 +163,15 @@ char ValidateTypes(string *words,
                    size_t words_size,
                    string *numbers,
                    size_t numbers_size) {
+    assert(words != NULL);
+    for (size_t i = 0; i < words_size; i++) {
+        assert(words[i] != NULL);
+    }
+    assert(numbers != NULL);
+    for (size_t i = 0; i < numbers_size; i++) {
+        assert(numbers[i] != NULL);
+    }
+
     for (size_t i = 0; i < words_size; i++) {
         for (size_t j = 0; j < strlen(words[i]); j++) {
             if (!isalpha(words[i][j]) 

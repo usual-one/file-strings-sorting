@@ -21,6 +21,6 @@ string CreateConvertedLine(const string *words,
                            int digits_sum);
 
 // returned value will be allocated and must be freed
-string ToString(int number);
+string ToString(unsigned int number);
 
 #endif // CONVERSION_H

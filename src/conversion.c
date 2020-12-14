@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,6 +12,9 @@
 int ConvertFile(const string dest_path,
                 const string src_path,
                 int line_size) {
+    assert(dest_path != NULL);
+    assert(src_path != NULL);
+
     FILE *read_fd = fopen(src_path, "r");
     if (read_fd == NULL) {
         return -1;
@@ -54,6 +58,8 @@ int ConvertFile(const string dest_path,
 
 int ConvertLine(const string line,
                 string *converted_line) {
+    assert(line != NULL);
+
     string *words;
     size_t words_size;
     char* digits;
@@ -78,6 +84,10 @@ int ConvertLine(const string line,
 string CreateConvertedLine(const string *words,
                            size_t words_size,
                            int digits_sum) {
+    assert(words != NULL);
+    for (size_t i = 0; i < words_size; i++) {
+        assert(words[i] != NULL);
+    }
 
     size_t line_size = 0;  
     for (size_t i = 0; i < words_size; i++) {
@@ -111,7 +121,7 @@ string CreateConvertedLine(const string *words,
     return converted_line;
 }
 
-string ToString(int number) {
+string ToString(unsigned int number) {
     int temp_copy = number;
     int number_char_size = 0;
 

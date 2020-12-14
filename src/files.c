@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -7,6 +8,9 @@
 int CopyContent(const string dest_path,
                 const string src_path,
                 int line_size) {
+    assert(dest_path != NULL);
+    assert(src_path != NULL);
+
     FILE *read_fd = fopen(src_path, "r");
     if (read_fd == NULL) {
         return -1;
@@ -61,6 +65,8 @@ int ReadLine(FILE *fd,
 int WriteLine(FILE *fd,
               const string line,
               char append_newline) {
+    assert(line != NULL);
+
     if (feof(fd) || !fd) {
         return -1; // incorrect file descriptor
     }
