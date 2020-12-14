@@ -41,10 +41,6 @@ void PickTypes(string *lines,
                size_t *words_size,
                string **numbers,
                size_t *numbers_size) {
-    //puts("PickTypes:0: function started");
-    for (size_t i = 0; i < lines_size; i++) {
-    //    printf("PickTypes:1:loop line: %s\n", lines[i]);
-    }
     *words = (string *) malloc(lines_size * sizeof(string));
     *numbers = (string *) malloc(lines_size * sizeof(string));
     *words_size = 0;
@@ -63,17 +59,14 @@ void PickTypes(string *lines,
         if (number_flag) {
             (*numbers)[*numbers_size] = (string) malloc((strlen(lines[i]) + 1) * sizeof(char));
             strcpy((*numbers)[*numbers_size], lines[i]);
-    //        printf("PickTypes:2:loop number: %s\n", (*numbers)[*numbers_size]);
             (*numbers_size)++; 
         } else {
             (*words)[*words_size] = (string) malloc((strlen(lines[i]) + 1) * sizeof(char));
             strcpy((*words)[*words_size], lines[i]);
-    //        printf("PickTypes:3:loop word: %s\n", (*words)[*words_size]);
             (*words_size)++;
         }
         number_flag = 1;
     }
-    //puts("PickTypes:4: function finished");
 }
 
 void Split(const string line,
@@ -124,8 +117,6 @@ int SplitByType(const string line,
     string *split_lines = NULL;
     size_t split_lines_size;
     Split(line, ' ', &split_lines, &split_lines_size);
-    for (size_t i = 0; i < split_lines_size; i++) {
-    }
 
     string *numbers;
     size_t numbers_size;
@@ -134,10 +125,6 @@ int SplitByType(const string line,
         free(split_lines[i]);
     }
     free(split_lines);
-    for (size_t i = 0; i < (*words_size); i++) {
-    }
-    for (size_t i = 0; i < numbers_size; i++) {
-    }
 
     if (!ValidateTypes(*words, *words_size, numbers, numbers_size)) {
         for (size_t i = 0; i < numbers_size; i++) {
@@ -156,8 +143,6 @@ int SplitByType(const string line,
         free(numbers[i]);
     }
     free(numbers);
-    for (size_t i = 0; i < (*digits_size); i++) {
-    }
     return 0;
 }
 
@@ -190,7 +175,6 @@ char ValidateTypes(string *words,
                 }
                 if (numbers[i][j] != '-' && numbers[i][j] != '.') {
                     return 0;
-
                 }
             }
             if (numbers[i][j] == '.') {
