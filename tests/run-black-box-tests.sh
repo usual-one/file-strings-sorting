@@ -31,4 +31,22 @@ do
     rm -rf $swap_file
 done
 
+err_files=`ls "$examples_dir/err_in"`
+
+for file in $err_files;
+do
+    tests_run=$((tests_run+1))
+
+    in_file="$examples_dir/err_in/$file"
+
+    result=`../build/FileStringsSorting $file`
+    if [[ $result == "Incorrect file" ]]
+    then
+        tests_succeeded=$((tests_succeeded+1))
+    else
+        tests_failed=$((tests_failed+1))
+        echo "FAIL: $in_file"
+    fi
+done
+
 echo "$tests_run tests run: $tests_succeeded succeeded, $tests_failed failed"
