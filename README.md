@@ -35,9 +35,9 @@ $ ./build-unit-tests.sh
 $ ./run-unit-tests.sh
 ```
 
-Запуск тестов методом "белого ящика":
+Запуск тестов методом "черного ящика":
 ```sh
-$ ./run-white-box-tests.sh
+$ ./run-black-box-tests.sh
 ```
 
 Для того, чтобы запустить все тесты сразу:
